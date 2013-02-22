@@ -1,0 +1,11 @@
+#. Trans: comment
+msgid "B_UNIQUE"
+msgstr "Unique to B.po"
+
+#. Trans: comment
+msgid "AB_SAME"
+msgstr "Same in both files"
+
+#. Trans: comment
+msgid "AB_DIFF"
+msgstr "Different value in B.po"
