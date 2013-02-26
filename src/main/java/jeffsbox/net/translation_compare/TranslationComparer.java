@@ -5,16 +5,22 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public abstract class TranslationComparer {
+public class TranslationComparer {
 	
-	protected Map<String,String> keyValuesA = new HashMap<>();
-	protected Map<String,String> keyValuesB = new HashMap<>();
+	private Map<String,String> keyValuesA = new HashMap<>();
+	private Map<String,String> keyValuesB = new HashMap<>();
 	
-	protected Set<String> uniqueKeysA;
-	protected Set<String> uniqueKeysB;
-	protected Set<String> commonKeys;
+	private Set<String> uniqueKeysA;
+	private Set<String> uniqueKeysB;
+	private Set<String> commonKeys;
 	
-	protected Set<KeyValueDiff> keyValueDiffs;
+	private Set<KeyValueDiff> keyValueDiffs;
+	
+	public TranslationComparer(Map<String,String> keyValuesA, Map<String, String> keyValuesB) {
+		this.keyValuesA.putAll(keyValuesA);
+		this.keyValuesB.putAll(keyValuesB);
+	}
+	
 	
 	public Set<String> getUniqueKeysToA() {
 		return getUniqueKeys(keyValuesA.keySet(), keyValuesB.keySet(), uniqueKeysA);
@@ -50,7 +56,7 @@ public abstract class TranslationComparer {
 		return result;		
 	}
 	
-	public Set<KeyValueDiff> getKeyValueDiffs() {
+	public Set<KeyValueDiff> getCommonKeyValueDiffs() {
 		if(keyValueDiffs != null) {
 			return keyValueDiffs;
 		}
@@ -70,6 +76,4 @@ public abstract class TranslationComparer {
 		
 		return keyValueDiffs;
 	}
-	
-	
 }

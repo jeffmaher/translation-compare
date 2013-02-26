@@ -1,5 +1,6 @@
 package jeffsbox.net.translation_compare;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collection;
@@ -10,7 +11,13 @@ public class CommandLineTest {
 		Path aPath = Paths.get("src/test/resources/A.po");
 		Path bPath = Paths.get("src/test/resources/B.po");
 		
-		PoFileTranslationComparer poComp = new PoFileTranslationComparer(aPath, bPath);
+		TranslationComparer poComp = null;
+		try {
+			poComp = new TranslationComparer(PoFileParser.getKeyValues(aPath), PoFileParser.getKeyValues(bPath));
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.exit(-1);
+		}
 		
 		System.out.println("*** Common ***");
 		printCollection(poComp.getCommonKeys());
@@ -26,7 +33,7 @@ public class CommandLineTest {
 		
 
 		System.out.println("*** Value Diffs ***");
-		printCollection(poComp.getKeyValueDiffs());
+		printCollection(poComp.getCommonKeyValueDiffs());
 		System.out.println();
 		
 	}

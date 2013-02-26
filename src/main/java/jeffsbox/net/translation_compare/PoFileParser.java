@@ -4,14 +4,15 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PoFileTranslationComparer extends TranslationComparer {
-
+public class PoFileParser {
+	
 	private static Pattern COMMENT_LINE_PATTERN = Pattern.compile("^#");
 	
 	private static String KEY_MATCH_GROUP = "key"; 
@@ -19,30 +20,16 @@ public class PoFileTranslationComparer extends TranslationComparer {
 	
 	private static String VALUE_MATCH_GROUP = "value";
 	private static Pattern VALUE_LINE_PATTERN = Pattern.compile("msgstr \"(?<" + VALUE_MATCH_GROUP + ">.*)\"");
-	
-	public PoFileTranslationComparer(Path a, Path b) {
-		super();
-		
-		try {
-			this.keyValuesA = getKeyValues(a);
-			this.keyValuesB = getKeyValues(b);
-		} catch (IOException e) {
-			
-			// TODO better error handling here
-			this.keyValuesA = new HashMap<>();
-			keyValuesA.put("errorA", "could not load PO file");
-			
-			this.keyValuesB = new HashMap<>();
-			keyValuesB.put("errorB", "could not load PO file");
-		}
+
+	public static Map<String, String> getKeyValues(String path) throws IOException {
+		return getKeyValues(Paths.get(path));
 	}
 	
-	private static Map<String, String> getKeyValues(Path path) throws IOException {
+	public static Map<String, String> getKeyValues(Path path) throws IOException {
 		Map<String, String> keyValues = new HashMap<>();
 		List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
 		
-		// Assumes PO file is well formed
-		
+		// Assumes PO file is well formed (ID, then String)
 		String lastKey = "";
 		for(String line : lines) {
 			Matcher commentMatcher = COMMENT_LINE_PATTERN.matcher(line);
@@ -65,5 +52,5 @@ public class PoFileTranslationComparer extends TranslationComparer {
 		
 		return keyValues;
 	}
-	
+
 }
