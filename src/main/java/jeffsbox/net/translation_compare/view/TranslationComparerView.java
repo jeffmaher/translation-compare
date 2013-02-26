@@ -46,9 +46,6 @@ public class TranslationComparerView extends JFrame {
 	private JPanel contentPane;
 	private JTextField textFieldFileAPath;
 	private JTextField textFieldFileBPath;
-//	private JTable tableUniqueKeysA;
-//	private JTable tableUniqueKeysB;
-//	private JTable tableCommonKeysDiff;
 	
 	private TranslationComparer comparer = null;
 	private JTabbedPane tabbedPaneReports;
@@ -79,6 +76,8 @@ public class TranslationComparerView extends JFrame {
 	 * Create the frame.
 	 */
 	public TranslationComparerView() {
+		super("Translation Comparer");
+		
 		thisFrame = this;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
