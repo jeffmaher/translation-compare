@@ -21,7 +21,7 @@ public class PropertiesFileParserTest {
 	
 	static Map<String,String> correctPropKeyValues = new HashMap<>();
 	static {
-		correctPropKeyValues.put("A_UNIQUE", "Unique to B.po");
+		correctPropKeyValues.put("B_UNIQUE", "Unique to B.po");
 		correctPropKeyValues.put("AB_SAME", "Same in both files");
 		correctPropKeyValues.put("AB_DIFF", "Different value in B.po");
 	}
@@ -42,7 +42,7 @@ public class PropertiesFileParserTest {
 	public void propKeyValuesAreCorrect() throws IOException {
 		Map<String, String> keyValues = PropertiesFileParser.getKeyValues("src/test/resources/B.properties");
 		Set<String> allKeys = new HashSet<>();
-		allKeys.addAll(correctPoKeyValues.keySet());
+		allKeys.addAll(correctPropKeyValues.keySet());
 		allKeys.addAll(keyValues.keySet());
 		
 		for(String key : allKeys) {

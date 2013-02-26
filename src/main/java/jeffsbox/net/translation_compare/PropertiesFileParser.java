@@ -17,7 +17,7 @@ public class PropertiesFileParser {
 	
 	public static Map<String, String> getKeyValues(Path path) throws IOException {
 		Properties propFile = new Properties();
-		FileReader fileReader = new FileReader("src/test/resources/A.properties");
+		FileReader fileReader = new FileReader(path.toFile());
 		propFile.load(fileReader);
 		
 		Set<Object> keySet = propFile.keySet(); 

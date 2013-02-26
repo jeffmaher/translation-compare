@@ -14,7 +14,8 @@ public class TranslationComparer {
 	private Set<String> uniqueKeysB;
 	private Set<String> commonKeys;
 	
-	private Set<KeyValueDiff> keyValueDiffs;
+	private Map<String, KeyValueDiff> keyValueDiffs;
+	
 	
 	public TranslationComparer(Map<String,String> keyValuesA, Map<String, String> keyValuesB) {
 		this.keyValuesA.putAll(keyValuesA);
@@ -56,12 +57,12 @@ public class TranslationComparer {
 		return result;		
 	}
 	
-	public Set<KeyValueDiff> getCommonKeyValueDiffs() {
+	public Map<String,KeyValueDiff> getCommonKeyValueDiffs() {
 		if(keyValueDiffs != null) {
 			return keyValueDiffs;
 		}
 		
-		keyValueDiffs = new HashSet<>();
+		keyValueDiffs = new HashMap<>();
 		
 		// TODO optimize with a closure if converting to Java 8 or Groovy
 		for(String key : getCommonKeys()) {
@@ -70,7 +71,7 @@ public class TranslationComparer {
 			
 			if(!valueA.equals(valueB)) {
 				KeyValueDiff diff = new KeyValueDiff(key, valueA, valueB);
-				keyValueDiffs.add(diff);
+				keyValueDiffs.put(key, diff);
 			}
 		}
 		

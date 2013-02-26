@@ -56,7 +56,7 @@ public class TranslationComparerTest {
 		Set<KeyValueDiff> correctDiffs = new HashSet<>( Arrays.asList(new KeyValueDiff[] {
 				new KeyValueDiff("AB_DIFF", aKeyValues.get("AB_DIFF"), bKeyValues.get("AB_DIFF"))
 		}));
-		Set<KeyValueDiff> diffs = comparer.getCommonKeyValueDiffs();
+		Set<KeyValueDiff> diffs = new HashSet<>(comparer.getCommonKeyValueDiffs().values());
 		assertEquals("Different diffs found", correctDiffs, diffs);
 	}
 
