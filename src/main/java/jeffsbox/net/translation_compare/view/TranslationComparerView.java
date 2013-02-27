@@ -219,7 +219,7 @@ public class TranslationComparerView extends JFrame {
 		String[][] rowData = new String[uniqueKeys.size()][2];
 		
 		int i = 0;
-		for(String key : uniqueKeys) {
+		for(String key : uniqueKeysList) {
 			rowData[i][0] = key;
 			rowData[i][1] = keyValues.get(key);
 			i++;
