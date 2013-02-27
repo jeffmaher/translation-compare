@@ -1,10 +1,27 @@
-translation-compare
-===================
+# Translation Compare
 
-Compares translation key files like PO files or .properties (Resource Bundle or i18n) files.
+Compares translation key files like PO files or .properties files (Resource Bundle or i18n).
 
-This project is still early in development. Functionality for PO files and Properties files (i18n, Resource Bundles). 
-It is developed and runs in Java 7.
+## Dev Setup
 
-The main class is jeffsbox.net.translation_compare.view.TranslationComparerView. 
-In the future, the Maven build will create binaries instead of an exectuable JAR.
+You must have Java 7 and Apache Maven 3.x
+
+## Building
+
+mvn clean package
+
+This places an exectuable JAR in the *target* directory (ex: translation-compare-1.0-SNAPSHOT.jar).
+
+## Running
+
+The files being compared are referred to as *A* and *B*.
+
+1. Double click translation-compare.jar (the executable JAR built in *Building* section)
+2. Enter or Browse to a path for File *A*
+3. Enter or Browse to a path for File *B*
+4. Click Compare
+
+## Tabs
+* Unique Keys (A) – Keys that appear in *A*, but not in *B*
+* Unique Keys (B) – Keys that appear in *B*, but not in *A*
+* Common Key Differences – Shows differences between the values for keys that appear both in *A* and *B*. If a common key has the same value in *A* and *B*, it is not displayed in the table.
