@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 public class FileParser {
 	
-	private static Pattern PO_FILE_EXTENSTION_PATTERN = Pattern.compile(".*\\.po$", Pattern.CASE_INSENSITIVE);
+	private static Pattern PO_FILE_EXTENSTION_PATTERN = Pattern.compile(".*\\.pot?$", Pattern.CASE_INSENSITIVE);
 	private static Pattern PROPERTIES_FILE_EXTENSION_PATTERN = Pattern.compile(".*\\.properties$", Pattern.CASE_INSENSITIVE);
 
 	public static Map<String, String> getKeyValues(String path) throws IOException {
